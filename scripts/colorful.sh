@@ -6,7 +6,7 @@ source $current_dir/utils.sh
 
 IFS="-"
 
-color_scheme=$(get_tmux_option '@tmux_colorful_color_scheme' 'https://coolors.co/313e61-74112f-f6c324-a3ebb1-ffaebc')
+color_scheme=$(get_tmux_option '@tmux_colorful_color_scheme' 'https://coolors.co/313e61-74112f-fbf900-2bffff-fad02c')
 
 light=$(get_tmux_option '@tmux_colorful_light' '#ffffff')
 dark=$(get_tmux_option '@tmux_colorful_dark' '#000000')
@@ -60,13 +60,10 @@ display_ram="$ram_info"
 git_info=$("$current_dir/git_info.sh")
 display_git="$git_info"
 
-status_justify=$(get_tmux_option @tmux_colorful_status_justify_format 'left')
-clock_mode_style=$(get_tmux_option @tmux_colorful_clock_mode_style 24)
-
 left_status_bar_1=$(get_tmux_option '@tmux_colorful_left_status_bar_1' '#S')
 left_status_bar_2=$(get_tmux_option '@tmux_colorful_left_status_bar_2' '#I:#W#F')
-right_status_bar_3=$(get_tmux_option '@tmux_colorful_right_status_bar_3' $display_battery)
-right_status_bar_4=$(get_tmux_option '@tmux_colorful_right_status_bar_4' $display_time)
+right_status_bar_3=$(get_tmux_option '@tmux_colorful_right_status_bar_3' $display_cpu)
+right_status_bar_4=$(get_tmux_option '@tmux_colorful_right_status_bar_4' $display_battery)
 right_status_bar_5=$(get_tmux_option '@tmux_colorful_right_status_bar_5' $display_date)
 
 # Left status bar
@@ -88,7 +85,8 @@ RS="$RS3 $RS4 $RS5 "
 set_tmux_option status-right "$RS"
 
 # Status options
-set_tmux_option status-interval 1
+status_interval=$(get_tmux_option '@tmux_colorful_status_interval' 10)
+set_tmux_option status-interval $status_interval
 set_tmux_option status on
 
 # Windows
@@ -102,14 +100,21 @@ set_tmux_option display-panes-colour "$dark"
 set_tmux_option display-panes-active-colour "$color1"
 
 # Clock mode
-set_tmux_option clock-mode-colour "$color1"
+clock_mode_color=$(get_tmux_option '@tmux_colorful_clock_mode_color' $color1)
+clock_mode_style=$(get_tmux_option @tmux_colorful_clock_mode_style 24)
+set_tmux_option clock-mode-colour $clock_mode_color
 set_tmux_option clock-mode-style $clock_mode_style
 
 # Copy mode highlight
-set_tmux_option mode-style "bg=$color1"
+copy_mode_highlight=$(get_tmux_option '@tmux_colorful_copy_mode_highlight' "$bg=$color1")
+set_tmux_option mode-style $copy_mode_highlight
 
 # Overall status bar
-set_tmux_option status-bg "$dark"
-set_tmux_option status-fg "$light"
+status_bg=$(get_tmux_option '@tmux_colorful_status_bg' $dark)
+status_fg=$(get_tmux_option '@tmux_colorful_status_fg' $light)
+set_tmux_option status-bg $status_bg
+set_tmux_option status-fg $status_fg
+
+status_justify=$(get_tmux_option @tmux_colorful_status_justify_format 'left')
 set_tmux_option status-justify $status_justify
 
