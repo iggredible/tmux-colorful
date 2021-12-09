@@ -4,14 +4,14 @@ current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source $current_dir/utils.sh
 
-IFS="-"
-
 color_scheme=$(get_tmux_option '@tmux_colorful_color_scheme' 'https://coolors.co/313e61-74112f-fbf900-2bffff-fad02c')
+
+IFS="-";
+
+read -a colors <<< "${color_scheme##*/}"
 
 light=$(get_tmux_option '@tmux_colorful_light' '#ffffff')
 dark=$(get_tmux_option '@tmux_colorful_dark' '#000000')
-
-read -a colors <<< "${color_scheme##*/}"
 
 color1=$(get_tmux_option '@tmux_colorful_color1' "#${colors[0]}")
 color2=$(get_tmux_option '@tmux_colorful_color2' "#${colors[1]}")
