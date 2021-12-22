@@ -77,6 +77,7 @@ done
 left_status_bar=$(get_tmux_option '@tmux_colorful_left_status_bar' '#S')
 LS="#[fg=$foreground_color_primary,bg=$color_primary,bold] $left_status_bar "
 set_tmux_option status-left "$LS"
+tmux set-option -g status-left-length 30
 
 # Windows information
 window_status=$(get_tmux_option '@tmux_colorful_window_status' '#I:#W#F')
