@@ -18,7 +18,7 @@ color_secondary=$(get_tmux_option '@tmux_colorful_color_secondary' "#${colors[4]
 foreground_color_primary=$(calculate_contrast_yiq $color_primary)
 foreground_color_secondary=$(calculate_contrast_yiq $color_secondary)
 
-IFS=' ' read -r -a plugins <<< $(get_tmux_option "@tmux_colorful_plugins" "cpu network date")
+IFS=' ' read -r -a plugins <<< $(get_tmux_option "@tmux_colorful_plugins" "cpu battery date")
 
 # Right status bar
 tmux set-option -g status-right ""
@@ -40,7 +40,7 @@ for plugin in "${plugins[@]}"; do
 
   if [ $plugin = "date" ]; then
     date_icon="$(get_tmux_option '@tmux_colorful_date_icon' '')"
-    date_format=$(get_tmux_option @tmux_colorful_date_format '%F')
+    date_format=$(get_tmux_option @tmux_colorful_date_format '%D')
     script="$date_icon $date_format"
   fi
 
@@ -53,11 +53,6 @@ for plugin in "${plugins[@]}"; do
   if [ $plugin = "network" ]; then
     network_info=$("$current_dir/network_info.sh")
     script="$network_info"
-  fi
-
-  if [ $plugin = "ram" ]; then
-    ram_info=$("$current_dir/ram_info.sh")
-    script="$ram_info"
   fi
 
   if [ $plugin = "git" ]; then
@@ -79,21 +74,21 @@ for plugin in "${plugins[@]}"; do
 done
 
 # Left status bar
-left_status_bar_1=$(get_tmux_option '@tmux_colorful_left_status_bar_1' '#S')
-left_status_bar_2=$(get_tmux_option '@tmux_colorful_left_status_bar_2' '#I:#W#F')
-LS="#[fg=$foreground_color_primary,bg=$color_primary,bold] $left_status_bar_1 "
+left_status_bar=$(get_tmux_option '@tmux_colorful_left_status_bar' '#S')
+LS="#[fg=$foreground_color_primary,bg=$color_primary,bold] $left_status_bar "
 set_tmux_option status-left "$LS"
 
 # Windows information
-set_tmux_option window-status-current-format "#[fg=$foreground_color_secondary,bg=$color_secondary,bold] $left_status_bar_2 "
-set_tmux_option window-status-format " $left_status_bar_2 "
+window_status=$(get_tmux_option '@tmux_colorful_window_status' '#I:#W#F')
+set_tmux_option window-status-current-format "#[fg=$foreground_color_secondary,bg=$color_secondary,bold] $window_status "
+set_tmux_option window-status-format " $window_status "
 
 # Windows
 set_tmux_option window-status-separator ""
 set_tmux_option window-status-current-style "fg=$color_primary,bg=$dark"
 
 # Status options
-status_interval=$(get_tmux_option '@tmux_colorful_status_interval' 10)
+status_interval=$(get_tmux_option '@tmux_colorful_status_interval' 1)
 set_tmux_option status-interval $status_interval
 set_tmux_option status on
 
