@@ -1,6 +1,8 @@
 # Tmux-Colorful
 
-> Take control of your [tmux](https://github.com/tmux/tmux) color schemes
+<img src="assets/doge-approves.png" width="400px" />
+
+## What's this?
 
 There are many great [tmux themes](https://github.com/rothgar/awesome-tmux#themes) out there. One problem with those tmux themes is that your color schemes options are limited. You are either using what they predefined for you, or you are left to decide your own colors.
 
