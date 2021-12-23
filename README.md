@@ -1,48 +1,54 @@
-# README
+# Tmux-Colorful
+
+> Take control of your [tmux](https://github.com/tmux/tmux) color schemes
 
 There are many great [tmux themes](https://github.com/rothgar/awesome-tmux#themes) out there. One problem with those tmux themes is that your color schemes options are limited. You are either using what they predefined for you, or you are left to decide your own colors.
 
 There are color schemes generators that let you to generate your own color schemes. One of my favorite color schemes generator is [coolors](https://coolors.co/). This plugin lets you to quickly use color schemes from coolors.
 
-## Usage
-
-Here is how you can use coolors to create your own color theme.
-
-1. Find your color palette (COOLORS-site-generate)
-2. Paste that URL in your tmux config
-3. Done!
-
 ## Installation
 
-With [TPM](https://github.com/tmux-plugins/tpm):
-
-Add this in your tmux config:
+With [TPM](https://github.com/tmux-plugins/tpm), add this in your tmux config:
 
 ```
 set -g @plugin 'iggredible/tmux-colorful'
 ```
 
-Manual:
-
-Add this in your tmux config:
+Manually, add this in your tmux config:
 
 ```
 run-shell "/path/to/tmux/colorful.tmux"
 ```
 
+## Usage
+
+Tmux-Colorful is easy to use. Here's how:
+
+First, head over to https://coolors.co/ and click on Generate. Find the color palette you like. Copy the URL.
+
+![coolors-generate-palette](assets/coolors-generate.png)
+
+Second, assuming that you have Tmux-Colorful installed, paste that URL in your tmux config.
+
+```
+set -g @tmux_colorful_color_scheme 'https://coolors.co/ff4e00-8ea604-f5bb00-ec9f05-bf3100'
+```
+
+Third, well, there's no third. You're done!
+
+![terminal-tmux-colorful](assets/terminal-tmux-colorful.png)
+
 ## Copy Paste From Coolors
 
 Tmux-Colorful comes with a predefined default that you can immediately use. However, the real power comes by using *your own* color schemes.
 
-In your tmux config, add the coolor URL:
+In your tmux config, just add the coolors URL:
 
 ```
 set -g @tmux_colorful_color_scheme 'https://coolors.co/30362f-625834-a59132-fffbdb-da7422'
 ```
 
 Then reload tmux with `Prefix + I`.
-
-(SCREENSHOT)
 
 ## Customizations
 
@@ -95,7 +101,7 @@ But what about font color? What if I select a really bright / dark background co
 
 Don't worry, your font color is automatically calculated to keep a decent contrast. If you select a dark background, your font color will be white. If you select a light background, your font color will be black.
 
-### Plugin Customizations
+### Plugins
 
 This plugin comes with five predefined plugins: 
 - `battery`
@@ -121,7 +127,7 @@ set -g @tmux_colorful_time_format '%X'
 
 At the moment it is limited to five plugins. If you have more plugin ideas, feel free to submit a PR!
 
-### Customizing the left status bar
+### Customizing the Left Status Bar
 
 The left status bar can be customized.
 
@@ -131,7 +137,7 @@ By default, it is displaying the session name. If you want to change it to displ
 set -g @tmux_colorful_left_status_bar '#S ↳'
 ```
 
-### Customizing the window status
+### Customizing the Window Status
 
 To customize the window status format to display the window name followed by a pipe and the window index number:
 
@@ -139,7 +145,7 @@ To customize the window status format to display the window name followed by a p
 set -g @tmux_colorful_window_status '#W|#I'
 ```
 
-### Refresh interval
+### Refresh Interval
 
 Tmux-Colorful by default refreshes every second. If you want to change that to 5s:
 
@@ -147,7 +153,7 @@ Tmux-Colorful by default refreshes every second. If you want to change that to 5
 set -g @tmux_colorful_status_interval 5
 ```
 
-### Clock color
+### Tmux clock
 
 Tmux-Colorful uses the primary color for Tmux's clock (Prefix + t). You can change the clock color with:
 
@@ -161,7 +167,7 @@ You can also change the clock mode between military time (0-23) and regular time
 set -g @tmux_colorful_clock_mode_style 12
 ```
 
-### Status background, foreground, and alignment
+### Status Background, Foreground, and Alignment
 
 The status background, foreground, and alignment can be customized:
 
@@ -190,9 +196,18 @@ Here's a complete list of what you currently can customize:
 - Status foreground: `@tmux_colorful_status_fg '#000000'`
 - Status alignment: `@tmux_colorful_status_justify_format 'left'`
 
-## Help, I am still seeing some old changes!
+## Help, I Am Still Seeing Some Old Changes!
 
 If you made a color change, but that color is still there even after you ran `Prefix + I`, detach tmux (`Prefix + d`) then kill the server (`tmux kill-server`).
+
+## Other Color Schemes Generator
+
+Although Tmux-Colorful is optimized for coolors, you are not limited to only using coolors. Here are some of color schemes generatrs out there:
+- [Adobe Color](https://color.adobe.com/)
+- [Paletton](https://paletton.com/)
+- [ColorSpace](https://mycolor.space/)
+- [Canva Color Palette](https://www.canva.com/colors/color-palettes/)
+- [...and many, many more!](https://www.google.com/search?q=color+scheme+generator)
 
 ## Contributing
 
