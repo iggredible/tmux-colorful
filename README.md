@@ -8,7 +8,7 @@ There are color schemes generators that let you to generate your own color schem
 
 Here is how you can use coolors to create your own color theme.
 
-1. Find your color palette (COOLORS screenshot)
+1. Find your color palette (COOLORS-site-generate)
 2. Paste that URL in your tmux config
 3. Done!
 
@@ -121,40 +121,42 @@ set -g @tmux_colorful_time_format '%X'
 
 At the moment it is limited to five plugins. If you have more plugin ideas, feel free to submit a PR!
 
-TBC
 ### Customizing the left status bar
 
-The left section of the tmux status bar can be customized.
+The left status bar can be customized.
 
-By default, it is displaying the session name. You can change it to say anything. This section is under `tmux_colorful_left_status_bar`.
+By default, it is displaying the session name. If you want to change it to display status bar followed by the return symbol:
 
 ```
-set -g @tmux_colorful_left_status_bar '#S'
+set -g @tmux_colorful_left_status_bar '#S ↳'
 ```
+
 ### Customizing the window status
 
-To customize the window status format, you can do:
+To customize the window status format to display the window name followed by a pipe and the window index number:
 
 ```
-set -g @tmux_colorful_window_status '#I:#W#F
+set -g @tmux_colorful_window_status '#W|#I'
 ```
 
 ### Refresh interval
 
-Tmux-Colorful refreshes every second. If you want to change that to 5s:
+Tmux-Colorful by default refreshes every second. If you want to change that to 5s:
+
 ```
 set -g @tmux_colorful_status_interval 5
 ```
 
 ### Clock color
 
-Tmux-Colorful uses the primary color for Tmux's clock (Prefix + t). You can change the color with:
+Tmux-Colorful uses the primary color for Tmux's clock (Prefix + t). You can change the clock color with:
 
 ```
 set -g @tmux_colorful_clock_mode_color '#ffffff'
 ```
 
-You can also change the clock mode between military time (0-23) to regular time (0-11). 
+You can also change the clock mode between military time (0-23) and regular time (0-11):
+
 ```
 set -g @tmux_colorful_clock_mode_style 12
 ```
@@ -165,35 +167,36 @@ The status background, foreground, and alignment can be customized:
 
 ```
 set -g @tmux_colorful_status_bg '#ffffff'
-set -g @tmux_colorful_status_fg '#ffffff'
-set -g @tmux_colorful_status_justify_format 'left'
+set -g @tmux_colorful_status_fg '#000000'
+set -g @tmux_colorful_status_justify_format 'centre'
 ```
 
-### Tmux-Colorful Full customizations
+*(And yes, tmux spells it "centre").*
+
+### Tmux-Colorful Full Customizations List
 
 Here's a complete list of what you currently can customize:
-- Color schemes from coolors: `@tmux_colorful_color_scheme 'https://coolors.co/ffc6d9-ffe1c6-fff7ae-48284a-916c80'`
-- Primary color (session bg): `@tmux_colorful_color_primary '#ffffff'`
-- Secondary color (current window bg): `@tmux_colorful_color_secondary '#ffffff'`
+- Color schemes from coolors: `@tmux_colorful_color_scheme 'https://coolors.co/30362f-625834-a59132-fffbdb-da7422'`
+- Primary color (left status bar and other parts): `@tmux_colorful_color_primary '#c84c09'`
+- Secondary color (window status): `@tmux_colorful_color_secondary '#d6f599'`
 - N colors (plugin colors): `@tmux_colorful_color_0 '#ffffff'`, `@tmux_colorful_color_1 '#ffffff'`, `@tmux_colorful_color_2 '#ffffff'`, etc.
 - Plugin lists: `@tmux_colorful_plugins 'cpu battery date'`
 - Left status bar: `@tmux_colorful_left_status_bar '#S'`
 - Window status: `@tmux_colorful_window_status '#I:#W#F'`
-- Status refresh interval: `@tmux_colorful_status_interval 1`
+- Status refresh interval: `@tmux_colorful_status_interval 10`
 - Clock color: `@tmux_colorful_clock_mode_color '#ffffff'`
 - Clock military/non-military style: `@tmux_colorful_clock_mode_style 24`
 - Status background: `@tmux_colorful_status_bg '#ffffff'`
-- Status foreground: `@tmux_colorful_status_fg '#ffffff'`
+- Status foreground: `@tmux_colorful_status_fg '#000000'`
 - Status alignment: `@tmux_colorful_status_justify_format 'left'`
 
-## Questions
+## Help, I am still seeing some old changes!
 
-I set a color but I changed my mind, but that color is still there. Help!
-If you encounter some bugs - for example, you changed the background color2 to red, and later decided to not use it after all, but the red still lingers. If anything like that happens, detach tmux and run `tmux kill-server`. It should restore everything back to default.
+If you made a color change, but that color is still there even after you ran `Prefix + I`, detach tmux (`Prefix + d`) then kill the server (`tmux kill-server`).
 
-## Pull Requests
+## Contributing
 
-If you have any idea / suggestions / bug fixes, feel free to submit a PR! Your help is highly coveted.
+Ideas, suggestions, and bug fixes are welcome. Feel free to submit a PR! Your help is highly coveted.
 
 # License
 
