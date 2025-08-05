@@ -116,4 +116,3 @@ status_justify=$(get_tmux_option @tmux_colorful_status_justify_format 'left')
 set_tmux_option status-bg $status_bg
 set_tmux_option status-fg $status_fg
 set_tmux_option status-justify $status_justify
-

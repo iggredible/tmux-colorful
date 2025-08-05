@@ -149,11 +149,13 @@ set -g @tmux_colorful_window_status '#W|#I'
 
 ### Refresh Interval
 
-Tmux-Colorful by default refreshes every second. If you want to change that to 5s:
+Tmux-Colorful by default refreshes every 10 seconds. If you want to change that to 1s:
 
 ```
-set -g @tmux_colorful_status_interval 5
+set -g @tmux_colorful_status_interval 1
 ```
+
+Note: If you're using the `time` plugin and want to see the second component moves every second, change the interval to 1s.
 
 ### Tmux clock
 
@@ -179,7 +181,7 @@ set -g @tmux_colorful_status_fg '#000000'
 set -g @tmux_colorful_status_justify_format 'centre'
 ```
 
-*(And yes, tmux spells it "centre").*
+*(And yes, tmux spells it "centre", not "center').*
 
 ### Tmux-Colorful Full Customizations List
 
