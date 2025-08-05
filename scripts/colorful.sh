@@ -3,6 +3,7 @@
 current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source $current_dir/utils.sh
+source $current_dir/cache.sh
 
 color_scheme=$(get_tmux_option '@tmux_colorful_color_scheme' 'https://coolors.co/fbf900-2bffff-353643-3b9778-74112f')
 
@@ -29,12 +30,12 @@ color_counter=0
 for plugin in "${plugins[@]}"; do
   if [ $plugin = "battery" ]; then
     battery_life_icon=$(get_tmux_option '@tmux_colorful_battery_life_icon' '♥')
-    battery_level=$("$current_dir/battery_info.sh")
+    battery_level=$(execute_with_cache "battery" "$current_dir/battery_info.sh")
     script="$battery_life_icon $battery_level%"
   fi
 
   if [ $plugin = "cpu" ]; then
-    cpu_info=$("$current_dir/cpu_info.sh")
+    cpu_info=$(execute_with_cache "cpu" "$current_dir/cpu_info.sh")
     script="CPU $cpu_info%%"
   fi
 
@@ -51,12 +52,12 @@ for plugin in "${plugins[@]}"; do
   fi
 
   if [ $plugin = "network" ]; then
-    network_info=$("$current_dir/network_info.sh")
+    network_info=$(execute_with_cache "network" "$current_dir/network_info.sh")
     script="$network_info"
   fi
 
   if [ $plugin = "git" ]; then
-    git_info=$("$current_dir/git_info.sh")
+    git_info=$(execute_with_cache "git" "$current_dir/git_info.sh")
     script="$git_info"
   fi
 

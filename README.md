@@ -200,6 +200,36 @@ Here's a complete list of what you currently can customize:
 - Status foreground: `@tmux_colorful_status_fg '#000000'`
 - Status alignment: `@tmux_colorful_status_justify_format 'left'`
 
+### Performance Optimization - Caching
+
+Tmux-Colorful now includes built-in caching to improve performance by reducing the frequency of plugin script executions. Each plugin's output is cached for a specific duration:
+
+- **CPU**: 5 seconds (default)
+- **Battery**: 30 seconds (default)
+- **Network**: 10 seconds (default)
+- **Git**: 5 seconds (default)
+
+You can customize cache durations for each plugin:
+
+```
+# Set CPU cache to 5 seconds
+set -g @tmux_colorful_cache_duration_cpu 5
+
+# Set battery cache to 60 seconds
+set -g @tmux_colorful_cache_duration_battery 60
+
+# Set network cache to 30 seconds
+set -g @tmux_colorful_cache_duration_network 30
+
+# Set git cache to 10 seconds
+set -g @tmux_colorful_cache_duration_git 10
+```
+
+To disable caching for a specific plugin, set its duration to 0:
+```
+set -g @tmux_colorful_cache_duration_cpu 0
+```
+
 ## Help, I Am Still Seeing Some Old Changes!
 
 If you made a color change, but that color is still there even after you ran `Prefix + I`, detach tmux (`Prefix + d`) then kill the server (`tmux kill-server`).
